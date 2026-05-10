@@ -80,4 +80,8 @@
 --('Task_Title_11', 'Description_11', 1, 2, '7-06-2026', 1),
 --('Task_Title_12', 'Description_12', 3, 1,  NULL, 4);
      */
+
+
+    //Scaffold-DbContext "Server=ՁԵՐ_ՍԵՐՎԵՐԸ;Database=ԲԱԶԱՅԻ_ԱՆՈՒՆԸ;Trusted_Connection=True;TrustServerCertificate=True;" 
+    //Microsoft.EntityFrameworkCore.SqlServer -Project TaskManager.DAL -StartupProject TaskManager -OutputDir Entities
 }
