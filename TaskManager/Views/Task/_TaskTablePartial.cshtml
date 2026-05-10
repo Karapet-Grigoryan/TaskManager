@@ -1,0 +1,78 @@
+﻿@using TaskManager.BLL.DTOs
+@using TaskManager.BLL.Enums
+@model List<TaskDto>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Priority</th>
+            <th>Created Date</th>
+            <th>Due Date</th>
+            <th>User</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>
+                    @switch (task.Status)
+                    {
+                        case TaskStatusEnum.Completed:
+                            <span class="badge bg-success">Completed</span>
+                            break;
+
+                        case TaskStatusEnum.InProgress:
+                            <span class="badge bg-primary">In Progress</span>
+                            break;
+
+                        case TaskStatusEnum.Pending:
+                            <span class="badge bg-warning text-dark">Pending</span>
+                            break;
+                    }
+                </td>
+                <td>
+                    @switch (task.Priority)
+                    {
+                        case PriorityLevelEnum.High:
+                            <span class="badge text-danger bg-danger-subtle border border-danger-subtle">High</span>
+                            break;
+
+                        case PriorityLevelEnum.Medium:
+                            <span class="badge text-primary bg-primary-subtle border border-primary-subtle">Medium</span>
+                            break;
+
+                        case PriorityLevelEnum.Low:
+                            <span class="badge text-warning bg-warning-subtle border border-warning-subtle">Low</span>
+                            break;
+                    }
+                </td>
+                <td>@task.CreatedAt.ToShortDateString()</td>
+                <td>@task.DueDate?.ToShortDateString()</td>
+                <td>@task.UserName</td>
+
+                <td>
+                    <div class="btn-group" role="group">
+                        <a asp-action="Edit" asp-route-id="@task.Id" class="btn btn-outline-primary btn-sm">Edit</a>
+                        <form asp-action="Delet" method="post"
+                              onsubmit="return confirm('Are you sure you want to delete this task?');"
+                              style="display:inline;">
+
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden" name="id" value="@task.Id" />
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

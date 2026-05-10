@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="BLL/TaskManager.BLL.csproj" Id="ede7439d-1939-48cf-9594-864ed6cd0c13" />
+  <Project Path="TaskManager.DAL/TaskManager.DAL.csproj" Id="2dec0d5a-669f-4980-bb18-914588e25351" />
+  <Project Path="TaskManager/TaskManager.csproj" />
+</Solution>
